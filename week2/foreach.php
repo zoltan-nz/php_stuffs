@@ -26,6 +26,37 @@ echo "\n";
 
 $class->iterateVisible();
 
-echo MyClass();
+class Dwarves {
 
-?>
+    public $all = ["Sleepy", "Dopey", "Doc", "Bashful", "Grumpy", "Happy", "Sneezy"];
+}
+
+$myDwarves = new Dwarves();
+
+foreach($myDwarves->all as $key => $value) {
+    print "$key => $value \n";
+}
+
+var_dump($myDwarves);
+
+class Rainbow {
+    public $quote = "Richard Of York Gave Battle In Vain";
+
+    function splitter() {
+
+    }
+
+    function size() {
+        count($this->quote);
+    }
+
+    function iterate() {
+
+    }
+}
+
+echo '<p> New section </p>';
+
+$myRainbow = new Rainbow;
+
+echo '<p> Size: ' . $myRainbow->size() . '</p>';
