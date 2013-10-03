@@ -17,7 +17,7 @@ $subject = 'Message from someone... Your subject message';
 $message = "
 <html>
 <head>
-  <title>Message from enzesolution.com</title>
+  <title>Message from yourwebsite.com</title>
 </head>
 <body>
   <p>You got the following message</p>
@@ -41,7 +41,7 @@ $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 // Additional headers
-$headers .= 'To: enze Solution <hello@enzesolution.com>' . "\r\n";
+$headers .= 'To: your name <yourwebsite@yourwebsite.com>' . "\r\n";
 $headers .= "From: $name <$email>" . "\r\n";
 
 // Mail it
