@@ -2,8 +2,9 @@
 
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Auth\UserInterface;
+use LaravelBook\Ardent\Ardent;
 
-class User extends Eloquent implements UserInterface, RemindableInterface
+class User extends Ardent implements UserInterface, RemindableInterface
 {
 
     /**
@@ -19,11 +20,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      */
     protected $hidden = array('password');
 
-    //    Protect against mass assignment
+    /**    Protect against mass assignment */
     protected $fillable = array('username', 'email');
 
-    /* Prevents from mass assignment */
+    /** Prevents from mass assignment */
     protected $guarded = array('id', 'password');
+
+    /**
+     * Ardent validation rules
+     */
+    public static $rules = array(
+        'username'              => 'required|between:4,16',
+        'email'                 => 'required|email',
+        'password'              => 'required|alpha_num|min:8|confirmed',
+        'password_confirmation' => 'required|alpha_num|min:8',
+    );
+
+    /** Automatically purge redundant data*/
+    public $autoPurgeRedundantAttributes = true;
 
     /**
      * Get the unique identifier for the user.
