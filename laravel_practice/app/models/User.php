@@ -6,6 +6,14 @@ use LaravelBook\Ardent\Ardent;
 
 class User extends Ardent implements UserInterface, RemindableInterface
 {
+    /**
+     * Post relationship
+     */
+    public function posts()
+    {
+        return $this->hasMany('Post');
+    }
+
 
     /**
      * The database table used by the model.
