@@ -15,3 +15,12 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::get('/test', function()
+    {
+        $post = new Post(array('body' => 'Yada yada yada'));
+        $user = User::find(1);
+        $user->posts()->save($post);
+    }
+
+);
