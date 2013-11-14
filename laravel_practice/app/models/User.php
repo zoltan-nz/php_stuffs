@@ -14,6 +14,15 @@ class User extends Ardent implements UserInterface, RemindableInterface
         return $this->hasMany('Post');
     }
 
+    /** Factory
+     */
+
+    public static $factory = array(
+        'username'              => 'string',
+        'email'                 => 'email',
+        'password'              => 'password',
+        'password_confirmation' => 'password'
+    );
 
     /**
      * The database table used by the model.
