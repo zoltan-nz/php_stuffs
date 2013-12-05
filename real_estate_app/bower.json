@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "homepage": "https://github.com/szines/php_stuffs/real_estate_app",
   "authors": [
-    "Zoltan <zdebre@gmail.com>"
+    "Zoltan"
   ],
   "license": "MIT",
   "private": true,
@@ -17,6 +17,7 @@
   ],
   "dependencies": {
       "jquery": "~1.10.2",
-      "normalize-css": "~2.1.3"
+      "normalize-css": "~2.1.3",
+      "bootstrap": "~3.0.2"
   }
 }
