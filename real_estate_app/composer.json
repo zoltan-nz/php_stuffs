@@ -5,7 +5,6 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.0.*",
-        "codesleeve/asset-pipeline": "dev-master",
         "laravelbook/ardent": "dev-master"
 	},
 	"autoload": {
