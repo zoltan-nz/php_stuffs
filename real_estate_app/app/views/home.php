@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Real Estate App</title>
-    <?= stylesheet_link_tag() ?>
-    <?= javascript_include_tag() ?>
+    <link rel="stylesheet" href="css/builds/main.css"/>
+    <link rel="stylesheet" href="css/builds/app.css"/>
 </head>
 <body>
+<div id="app">
+
+</div>
+
+<script src="js/builds/libs.js"></script>
+<script src="js/builds/app.js"></script>
 
 </body>
 </html>

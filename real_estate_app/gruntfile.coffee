@@ -1,67 +1,138 @@
-'use strict'
-
 module.exports = (grunt) ->
+  require("time-grunt") grunt
+  require("load-grunt-tasks") grunt
+
   grunt.initConfig
-    pkg: grunt.file.readJSON('package.json')
-
-
-    project:
-      app: 'app'
-      assets: '<%= project.app %>/assets'
-      src: '<%= project.assets %>/src'
-      css: ['<%= project.src %>/scss/style.scss']
-      js: ['<%= project.src %>/js/*.js']
-
-    tag:
-      banner: '/*!\n' +
-      ' * <%= pkg.name %>\n' +
-      ' * <%= pkg.title %>\n' +
-      ' * <%= pkg.url %>\n' +
-      ' * @author <%= pkg.author %>\n' +
-      ' * @version <%= pkg.version %>\n' +
-      ' * Copyright <%= pkg.copyright %>. <%= pkg.license %> licensed.\n' +
-      ' */\n'
 
     sass:
       dev:
         options:
           style: 'expanded',
-          banner: '<%= tag.banner %>',
-          compass: true
+          compass: true,
+          trace: true
         files:
-          '<%= project.assets %>/css/style.css': '<%= project.css %>'
+          './public/css/builds/app.css': './app/assets/sass/**/*.sass'
       dist:
         options:
           style: 'compressed',
           compass: true
         files:
-          '<%= project.assets %>/css/style.css': '<%= project.css %>'
+          './app/css/builds/app.css': './app/assets/sass/*.sass'
 
-    cssmin:
+    coffee:
       dev:
-        files:
-          'public/css/style.min.css': [
-            '<%= project.assets %>/bower/normalize-css/normalize.css',
-            'public/css/style.css'
-            ]
-      dist:
         options:
-          banner: '<%= tag.banner %>'
-        files:
-          'public/css/style.min.css': [
-            '<%= project.assets %>/bower/normalize-css/normalize.css'
-            'public/css/style.css'
-            ]
+          bare: true
+        files: [
+          expand: true
+          cwd: './ember/'
+          src: ['**/*.coffee']
+          dest: './ember/'
+          ext: '.js'
+        ]
+
+    clean:
+      build:
+        src: ["public/js/builds/*.js", "public/css/builds/*.css"]
+
+      deploy:
+        src: ["public/js/builds/*.js", "!public/js/builds/build.min.js", "public/css/builds/*.css", "!public/css/builds/main.min.css"]
+
+    jshint:
+      files: ["ember/**/*.js"]
 
     watch:
+      libs:
+        files: ["public/js/libs/**/*.js"]
+        tasks: ["concat:libs"]
+        options:
+          livereload: true
+
       sass:
-        files: '<%= project.src %>/scss/{,*/}*.{scss,sass}'
-        tasks: ['sass:dev']
+        files: ["./app/assets/sass/*.sass"]
+        tasks: ["sass:dev"]
+        options:
+          livereload: true
 
-  require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks)
+      coffee:
+        files: ["./ember/**/*.coffee"]
+        tasks: ["coffee:dev", "concat"]
+        options:
+          livereload: true
 
-  grunt.registerTask('default', [
-    'sass:dev'
-    'cssmin:dev'
-    'watch'
-  ])
+      css:
+        files: ["public/css/*.css", "public/js/libs/**/*.css"]
+        tasks: ["concat:css"]
+        options:
+          livereload: true
+
+      templates:
+        files: ["ember/templates/*.hbs", "ember/templates/**/*.hbs"]
+        tasks: ["emberTemplates"]
+        options:
+          livereload: true
+
+      app:
+        files: ["ember/*.js", "ember/**/*.js"]
+        tasks: ["concat:app"]
+        options:
+          livereload: true
+
+    connect:
+      server:
+        port: 8000
+        base: "public"
+        keepalive: true
+
+    concat:
+      app:
+        src: ["ember/app.js", "ember/models/*.js", "ember/routes.js", "ember/routes/*.js", "ember/controllers/*.js", "ember/views/*.js"]
+        dest: "public/js/builds/app.js"
+        options:
+          separator: ";"
+
+      libs:
+        src: ["public/js/libs/jquery/jquery.js", "public/js/libs/handlebars/handlebars.js", "public/js/libs/ember/ember.js", "public/js/libs/ember-data-shim/ember-data.js", "public/js/libs/bootstrap/dist/js/bootstrap.js"]
+        dest: "public/js/builds/libs.js"
+        options:
+          separator: ";"
+
+      css:
+        src: ["public/js/libs/bootstrap/dist/css/bootstrap.css", "public/css/style.css"]
+        dest: "public/css/builds/main.css"
+
+      deploy:
+        src: ["public/js/builds/libs.js", "public/js/builds/templates.js", "public/js/builds/app.js"]
+        dest: "public/js/builds/build.js"
+        options:
+          separator: ";"
+
+    uglify:
+      js:
+        src: "public/js/builds/build.js"
+        dest: "public/js/builds/build.min.js"
+
+    shell:
+      serve:
+        command: "php artisan serve && echo \"hey\""
+
+    emberTemplates:
+      compile:
+        options:
+          templateBasePath: "ember/templates/"
+
+        files:
+          "public/js/builds/templates.js": ["ember/templates/*.hbs", "ember/templates/**/*.hbs"]
+
+    cssmin:
+      minify:
+        src: "public/css/builds/main.css"
+        dest: "public/css/builds/main.min.css"
+
+  grunt.event.on "watch", (action, filepath, target) ->
+    grunt.log.writeln target + ": " + filepath + " has " + action
+
+  grunt.registerTask "serve", ["shell:serve"]
+  grunt.registerTask "build", ["jshint", "clean:build", "emberTemplates", "concat", "sass:dev", "coffee:dev"]
+  grunt.registerTask "default", ["build", "watch"]
+  grunt.registerTask "deploy", ["concat:deploy", "uglify", "cssmin", "clean:deploy"]
