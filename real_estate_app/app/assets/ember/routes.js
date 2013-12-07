@@ -2,7 +2,7 @@ App.Router.map(function() {
   this.route("index", {
     path: "/"
   });
-  return this.route('about', {
-    path: '/about5'
+  return this.route('admin', {
+    path: '/admin'
   });
 });

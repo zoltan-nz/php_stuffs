@@ -25,9 +25,9 @@ module.exports = (grunt) ->
           bare: true
         files: [
           expand: true
-          cwd: './ember/'
+          cwd: './app/assets/ember/'
           src: ['**/*.coffee']
-          dest: './ember/'
+          dest: './app/assets/ember/'
           ext: '.js'
         ]
 
@@ -39,7 +39,7 @@ module.exports = (grunt) ->
         src: ["public/js/builds/*.js", "!public/js/builds/build.min.js", "public/css/builds/*.css", "!public/css/builds/main.min.css"]
 
     jshint:
-      files: ["ember/**/*.js"]
+      files: ["./app/assets/ember/**/*.js"]
 
     watch:
       libs:
@@ -55,7 +55,7 @@ module.exports = (grunt) ->
           livereload: true
 
       coffee:
-        files: ["./ember/**/*.coffee"]
+        files: ["./app/assets/ember/**/*.coffee"]
         tasks: ["coffee:dev", "concat"]
         options:
           livereload: true
@@ -67,7 +67,7 @@ module.exports = (grunt) ->
           livereload: true
 
       templates:
-        files: ["ember/templates/*.hbs", "ember/templates/**/*.hbs"]
+        files: ["./app/assets/ember/templates/*.hbs", "./app/assets/ember/templates/**/*.hbs"]
         tasks: ["emberTemplates"]
         options:
           livereload: true
@@ -86,7 +86,7 @@ module.exports = (grunt) ->
 
     concat:
       app:
-        src: ["ember/app.js", "ember/models/*.js", "ember/routes.js", "ember/routes/*.js", "ember/controllers/*.js", "ember/views/*.js"]
+        src: ["./app/assets/ember/app.js", "./app/assets/ember/models/*.js", "./app/assets/ember/routes.js", "./app/assets/ember/routes/*.js", "./app/assets/ember/controllers/*.js", "./app/assets/ember/views/*.js"]
         dest: "public/js/builds/app.js"
         options:
           separator: ";"
@@ -119,10 +119,10 @@ module.exports = (grunt) ->
     emberTemplates:
       compile:
         options:
-          templateBasePath: "ember/templates/"
-
+          templateBasePath: "./app/assets/ember/templates/"
+          precompile: false
         files:
-          "public/js/builds/templates.js": ["ember/templates/*.hbs", "ember/templates/**/*.hbs"]
+          "./public/js/builds/templates.js": ["./app/assets/ember/templates/*.hbs", "./app/assets/ember/templates/**/*.hbs"]
 
     cssmin:
       minify:

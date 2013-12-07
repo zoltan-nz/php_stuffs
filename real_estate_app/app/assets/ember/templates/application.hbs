@@ -1,0 +1,22 @@
+<div class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle='collapse' data-target='#menubar' type='button'>
+            <div class="icon-bar"></div>
+            <div class="icon-bar"></div>
+            <div class="icon-bar"></div>
+        </button>
+        <a class="navbar-brand" href="#">Real Estate App</a>
+    </div>
+    <div class="collapse navbar-collapse" id="menubar">
+        <ul class="nav navbar-nav">
+            <li>{{#link-to 'index'}}Home{{/link-to}}</li>
+            <li>{{#link-to 'admin'}}Admin{{/link-to}}</li>
+        </ul>
+    </div>
+
+</div>
+
+
+<div class="container">
+    {{outlet}}
+</div>

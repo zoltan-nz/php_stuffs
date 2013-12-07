@@ -1,7 +1,11 @@
-h1 {
-  font-size: 40px;
+body {
+  padding-top: 20px;
 }
 
-body {
-  background: grey;
+.navbar-inverse {
+  background-color: rgba(0, 0, 0, 0.65);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.navbar-inverse .active {
+  color: white !important;
 }

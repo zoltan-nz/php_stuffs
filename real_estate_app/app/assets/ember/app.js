@@ -19,11 +19,3 @@ App.ApplicationAdapter = DS.RESTAdapter.extend({
 });
 
 App.Store = DS.Store.extend();
-;App.Router.map(function() {
-  this.route("index", {
-    path: "/"
-  });
-  return this.route('admin', {
-    path: '/admin'
-  });
-});

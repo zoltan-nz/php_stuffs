@@ -1,3 +1,3 @@
 App.Router.map ->
   @route "index", path: "/"
-  @route 'about', path: '/about5'
+  @route 'admin', path: '/admin'

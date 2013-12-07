@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="css/builds/app.css"/>
 </head>
 <body>
-<div id="app">
+<div id="app" class="container">
 
 </div>
 
 <script src="js/builds/libs.js"></script>
+<script src="js/builds/templates.js"></script>
 <script src="js/builds/app.js"></script>
 
 </body>

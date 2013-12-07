@@ -59937,30 +59937,36 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
   })
 
 }(jQuery);
-;Ember.TEMPLATES["app"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
-this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  
+;Ember.TEMPLATES["admin"] = Ember.Handlebars.compile("<h1>Admin</h1>");
 
+Ember.TEMPLATES["application"] = Ember.Handlebars.compile("<div class=\"navbar navbar-default\">\n    <div class=\"navbar-header\">\n        <button class=\"navbar-toggle\" data-toggle='collapse' data-target='.navbar-ex1-collapse' type='button'>\n            <div class=\"icon-bar\"></div>\n            <div class=\"icon-bar\"></div>\n            <div class=\"icon-bar\"></div>\n        </button>\n        <a class=\"navbar-brand\" href=\"#\">Real Estate App</a>\n    </div>\n    <div class=\"collapse navbar-collapse navbar-ex1-collapse\">\n        <ul class=\"nav navbar-nav\">\n            <li>{{#link-to 'index'}}Home{{/link-to}}</li>\n            <li>{{#link-to 'admin'}}Admin{{/link-to}}</li>\n        </ul>\n    </div>\n\n</div>\n\n\n<div class=\"container\">\n    {{outlet}}\n</div>");
 
-  data.buffer.push("<h1>Main template</h1>");
-  
-});;var App, attr;
-
-App = Ember.Application.create({
-  LOG_TRANSITIONS: true
+Ember.TEMPLATES["index"] = Ember.Handlebars.compile("<h1>Home page</h1>");;window.App = Ember.Application.create({
+  LOG_TRANSITIONS: true,
+  LOG_TRANSITIONS_INTERNAL: true,
+  LOG_BINDINGS: true,
+  LOG_ACTIVE_GENERATION: true,
+  LOG_VIEW_LOOKUPS: true,
+  RAISE_ON_DEPRECATION: true,
+  LOG_STACKTRACE_ON_DEPRECATION: true,
+  LOG_VERSION: true,
+  debugMode: true,
+  rootElement: '#app',
+  ready: function() {
+    return this.set('Router.enableLogging', true);
+  }
 });
 
-App.Store = DS.Store.extend({
-  adapter: DS.RESTAdapter.extend({})
+App.ApplicationAdapter = DS.RESTAdapter.extend({
+  host: window.location.protocol + '//' + window.location.host
 });
 
-attr = DS.attr;
+App.Store = DS.Store.extend();
 ;App.Router.map(function() {
   this.route("index", {
     path: "/"
   });
-  return this.route('about', {
-    path: '/about5'
+  return this.route('admin', {
+    path: '/admin'
   });
 });
