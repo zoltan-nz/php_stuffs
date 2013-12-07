@@ -15,3 +15,15 @@ Route::get('/', function()
 {
 	return View::make('home');
 });
+
+Route::group(array('prefix' => 'api'), function()
+    {
+        Route::resource('user', 'UserController');
+        Route::resource('county', 'CountyController');
+        Route::resource('city', 'CityController');
+        Route::resource('house_type', 'HouseTypeController');
+        Route::resource('sales_type', 'SalesTypeController');
+        Route::resource('property', 'PropertyController');
+    });
+
+
