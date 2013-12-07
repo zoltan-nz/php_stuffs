@@ -9,7 +9,12 @@ class CountyController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$counties = County::all();
+
+        return Response::json(array(
+            'counties' => $counties->toArray()),
+            200
+        );
 	}
 
 	/**
@@ -40,7 +45,12 @@ class CountyController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$county = County::find($id);
+
+        return Response::json(array(
+            'counties' => $county->toArray()),
+            200
+        );
 	}
 
 	/**
