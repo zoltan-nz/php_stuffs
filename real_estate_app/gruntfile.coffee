@@ -120,7 +120,7 @@ module.exports = (grunt) ->
       compile:
         options:
           templateBasePath: "./app/assets/ember/templates/"
-          precompile: false
+          precompile: true
         files:
           "./public/js/builds/templates.js": ["./app/assets/ember/templates/*.hbs", "./app/assets/ember/templates/**/*.hbs"]
 
