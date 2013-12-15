@@ -25,4 +25,3 @@ define("COMPANY_NAME","Digital Hub");
 define("APPLICATION_NAME","WebElevate Confectionary Products");
 
 define("UPLOAD_PATH",  $_SERVER['DOCUMENT_ROOT'] . "/uploads/");
-var_dump(UPLOAD_PATH);

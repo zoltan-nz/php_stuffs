@@ -6,21 +6,21 @@
 */
 defined('MY_APP') or die('Restricted access');
 
-die('boom');
-$link_id=@mysql_connect(DB_HO,DB_USE,DB_PASSWOR);
+$link_id=@mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
 if($link_id) {
-	
-	die("Successful Connection");
+
+    if(mysql_select_db(DB_DATABASE,$link_id)) {
+
+        $_SESSION['flash'] =  "Connection to database successful";
+
+    } else {
+
+        $_SESSION['flash'] = "Connection to database failed";
+    }
+
 } else {
 
-	//echo "UnSuccessful Connection: " . DB_HOST;
-	EXIT;
+	$_SESSION['flash'] = "UnSuccessful Connection: " . DB_HOST;
+
 }
 
-if(mysql_select_db(DB_DATABASE,$link_id)) {
-	//echo "<p>Connection to database successful </p>";
-	header("Location: http://www.ryanair.com");
-} else {
-
-	//echo "<p>Connection to database failed  </p>";
-}

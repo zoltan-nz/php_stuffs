@@ -1,3 +1,4 @@
+<?php defined('MY_APP') or die('Restricted access'); ?>
 
 <?php if (isset($flashMessage) && strlen(trim($flashMessage)) > 0 ) : ?>
 <div class="alert">
