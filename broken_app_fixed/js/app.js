@@ -166,4 +166,28 @@ function initBtnJson2() {
 }
 
 
+$(function ( ) {
+
+      console.log("Loaded");
+      $(".alert").alert();
+
+      })
+
+  /*
+
+  if ( $(".delete_icon").length > 0 ) {
+      $(".delete_icon").click(function() {
+          $(this).parents("tr").css({ "background-color" : "#fbcdcd" }, 'fast');
+  // THE ALERT BELOW CAN BE REMOVED - you can put any function here linked to the delete icon link in the table //
+  return  confirm("Are you sure you want to delete this item?");
+
+
+  // And we make the deleted row to dissapear! //
+  //$(this).parents("tr").fadeOut("fast");
+  });
+  }
+
+
+  */
+
 

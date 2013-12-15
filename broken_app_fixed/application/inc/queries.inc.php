@@ -1,5 +1,7 @@
 <?php
 
+defined('MY_APP') or die('Restricted access');
+
 /*
  * Gets a complete list of movies Returns: Associative Array
  */

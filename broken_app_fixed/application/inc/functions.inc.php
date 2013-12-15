@@ -1,166 +1,120 @@
 <?php
 
-/*
- * This constant is declared in index.php
-* It prevents this file being called directly
-*/
 defined('MY_APP') or die('Restricted access');
 
-
 function validateproduct($product) {
-	
-	
-	return false;
-	
-	
+
+	return true;
+
 }
 
-function saveProduct($item ) {
+// Return with inserted id or false and error message in _session['error']
+function saveProduct($product) {
 	
-	$sqlQuery = "INSERT INTO prod uctts (title, mf_id,	price,
-	taste)
-	values ('{$product['title']}','{$product['mf_id']}', '{$product['priice']}','{$product['taset']}')";
+	$sqlQuery = "
+        INSERT INTO products
+        (title, mf_id,	price,	taste)
+      	values
+      	('{$product['title']}',
+      	 '{$product['mf_id']}',
+      	 '{$product['price']}',
+      	 '{$product['taste']}')";
 	
-	//$result = mysql_query($sqlQuery);
-	
-	
+	$result = mysql_query($sqlQuery);
 
-	
 	if (!$result) {
-		echo $sqlQuery;
-		
-		die("error" . mysql_error());
-	} 
-	
-	
-	return mysql_insert_id();
-	
-}
-/* 
- * Realistically, you would pass function $_FILES array, but here we are assuming it's available
- * UPLOAD_PATH is defined in config.inc.php
- */
-function uploadFiles($product_id) {
-	//echo UPLOAD_PATH;
-	//echo $_FILES['uploadedfile']['tmp_name'];
-	if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], UPLOAD_PATH)) {
-		
-		saveImageRecord($product_id, basename( $_FILES['uploadedfile']['name']));
-		
-	
-	} else{
-		echo "<p>There was an error uploading the file, please try again!";
+        $_SESSION['error'] = $sqlQuery.("<br/>").mysql_error();
+        return false;
 	}
 	
-	
+	return mysql_insert_id();
+}
+
+function uploadFiles($product_id) {
+	echo UPLOAD_PATH;
+	echo $_FILES['uploadedfile']['tmp_name'];
+	if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], UPLOAD_PATH)) {
+		saveImageRecord($product_id, basename( $_FILES['uploadedfile']['name']));
+	} else{
+		$_SESSION['error'] = "There was an error uploading the file, please try again!";
+	}
 }
 
 
 function saveImageRecord($product_id, $imageName) {
-	
-	
-	$sqlQuery = "UPDATE productts SET imagefile = '$imageName' where movie_id = $product_id"; 
+
+	$sqlQuery = "UPDATE products SET 'imagefile' = '$imageName' where 'product_id' = '$product_id'";
 	$result = mysql_query($sqlQuery);
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
 
-/*
- * Typical things that go wrong with next script
- * You must update the insert.php file to capture any new fields
- * You must ensure there are commas on any new lines you create
- * To resolve issues, uncomment the lines which echo the $sqlQuery  and die();
- */
+// Update products. Return true if success and return false if error.
+function updateProduct($product) {
 
-
-function updateMovie($product) {
     $productID = (int) $product['movie_id'];
+
     $sqlQuery = "UPDATE products SET ";
-     $sqlQuery .= " taste = '" . $produc['taste'] . "',";
-     $sqlQuery .= " price = '". $product['price'] . "',";
-     $sqlQuery = " title = '". $product['ttle'] . "',";
-     $sqlQuery = " description = '". $product['description'] . "', ";
-     $sqlQuery .= " mf_id = '". $product['mf_id'] . "'";
+    $sqlQuery .= " 'taste' = '"         . $product['taste'] . "',";
+    $sqlQuery .= " 'price' = '"         . $product['price'] . "',";
+    $sqlQuery .= " 'title' = '"         . $product['title'] . "',";
+    $sqlQuery .= " 'description' = '"   . $product['description'] . "', ";
+    $sqlQuery .= " 'mf_id' = '"         . $product['mf_id'] . "'";
+    $sqlQuery .= " WHERE 'product_id' = '". $productID . "'";
     
-    $sqlQuery .= " WHERE productid = $productID";
-    
-  //  echo $sqlQuery;
- //  die("...");
+    var_dumb($sqlQuery);
     
     $result = mysql_query($sqlQuery);
-	
-    
-    
-	if (!$result) {
-		die("error" . mysql_error());
-        }
-	
-    
+
+	if ($result) {
+
+        return true;
+
+    } else {
+
+		$_SESSION['error'] = mysql_error();
+        return false;
+    }
 }
 
+// Delte product option. Return true if success, false when not.
+function deleteProduct($id) {
 
-function deleteMovie($id) {
     $productID = (int) $id;
-    $sqlQuery = "DELETE FROM  where product_id = $productID";
+
+    $sqlQuery = "DELETE FROM products where 'product_id' = '$productID'";
     
     $result = mysql_query($sqlQuery);
-    if (!$result) {
-		die("error" . mysql_error());
-        }
+    if ($result) {
+
+        return true;
+
+    } else {
+
+        $_SESSION['error'] = mysql_error();
+        return false;
+
+    }
 }
 
+// Return with results in array or with false.
+function showProduct($id) {
 
-function retrieveMovie($id) {
+    $productID = (int) $id;
 
-	$sqlQuery = "SELECT * from  WHERE product_id = $id";
+    $sqlQuery = "SELECT * from products WHERE 'product_id' = '$productID'";
 
 	$result = mysql_query($sqlQuery);
-	
-	if(!$result) die("error" . mysql_error());
-	
-	
-	//echo $sqlQuery;
 
-
-	return mysql_fetch_assoc($result);
-	
+    if ($result) {
+        return mysql_fetch_assoc($result);
+    } else {
+        $_SESSION['error'] = mysql_error();
+        return false;
+    }
 }
 
 
-
-
-function output_edit_link($id) {
-	
-	return "<a href='ed.php?id=$id'>Edit</a>";
-	
-	
-}
-function output_delete_link($id) {
-
-	return "<a href='del.php?id=$id'>Delete</a>";
-
-
-}
-
-function output_selected($currentValue, $valueToMatch) {
-	
-	
-	if ($currentValue == $valueToMatch) {
-		
-		return "selected ='selected'";
-		
-	}
-	
-}
-
-function authenticate($username, $password) {   
-    $boolAuthenticated = false;
+function authenticate($username, $password) {
     
     $sqlQuery = "SELECT * from adminusers WHERE ";
     $sqlQuery .= "username = '" . $username . "'";
@@ -168,12 +122,16 @@ function authenticate($username, $password) {
     $sqlQuery .= "password = '" .$password . "'";
     
     $result = mysql_query($sqlQuery);
-    
-    if (!$result)  die("Error: " . $sqlQuery . mysql_error());
-    
-    if (mysql_num_rows($result)==1) {
-        $boolAuthenticated = true;
+
+    if ($result) {
+
+        if (mysql_num_rows($result)==1) {
+            return true;
+        }
+
+    } else {
+        $_SESSION['error'] = mysql_error();
+        return false;
     }
-    
-    return $boolAuthenticated;
+
 }
