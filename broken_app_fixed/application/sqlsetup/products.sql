@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `movietutorial` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `movietutorial`;
+CREATE DATABASE  IF NOT EXISTS `confectionary`; /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `confectionary`;
 -- MySQL dump 10.13  Distrib 5.5.16, for osx10.5 (i386)
 --
--- Host: localhost    Database: movietutorial
+-- Host: localhost    Database: confectionary
 -- ------------------------------------------------------
 -- Server version	5.5.9
 
@@ -66,7 +66,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (32,3,'First',124,'','',''),(33,2,'dsafdsa',45,'Sour','','');
+INSERT INTO `products` VALUES (1,3,'First',124,'Sweet','',''),(2,2,'Second',45,'Sour','','');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 

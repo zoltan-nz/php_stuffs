@@ -9,10 +9,10 @@ defined('MY_APP') or die('Restricted access');
 /*
  * Declare a number of constants that you can change depending on your application
  */
-define("DB_HOST","");
-define("DB_USER","");
-define("DB_PASSWORD","");
-define("DB_DATABASE","");
+define("DB_HOST","localhost");
+define("DB_USER","root");
+define("DB_PASSWORD","root");
+define("DB_DATABASE","confectionary");
 
 /*
  * Declare a number of constants that you can change depending on your application
@@ -24,4 +24,5 @@ define("COMPANY_NAME","Digital Hub");
 
 define("APPLICATION_NAME","WebElevate Confectionary Products");
 
-define("UPLOAD_PATH",  realpath(dirname(__FILE__)) . "\\..\\uploads\\");
+define("UPLOAD_PATH",  $_SERVER['DOCUMENT_ROOT'] . "/uploads/");
+var_dump(UPLOAD_PATH);
