@@ -8,7 +8,7 @@ if($link_id) {
 
     if(mysql_select_db(DB_DATABASE,$link_id)) {
 
-        $_SESSION['flash'] =  "Connection to database successful";
+//        $_SESSION['flash'] =  "Connection to database successful";
 
     } else {
 
@@ -17,7 +17,7 @@ if($link_id) {
 
 } else {
 
-	$_SESSION['error'] = "UnSuccessful Connection: " . DB_HOST;
+	$_SESSION['error'] = "UnSuccessful Connection to: " . DB_HOST;
 
 }
 
