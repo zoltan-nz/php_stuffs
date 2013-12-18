@@ -1,9 +1,18 @@
-body
-{
-    padding-top: 60px;
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+
+* {
+    font-family: 'Droid Sans', sans-serif;
 }
 
-.ajaxContent
-{
+body {
+    padding-top: 20px;
+}
+
+.ajaxContent {
     border: solid 1px #999; min-height: 200px; width: 200px;
+}
+
+.well {
+    background-image: none;
+    background-color: #DCCEB0!important;
 }

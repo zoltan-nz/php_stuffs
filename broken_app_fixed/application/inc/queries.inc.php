@@ -2,9 +2,24 @@
 
 defined('MY_APP') or die('Restricted access');
 
-function validateproduct($product) {
+/*
+ *
+ * PRODUCT CRUD interface
+ *
+ * */
+
+function validateProduct($product) {
 
     return true;
+
+}
+
+function productAll() {
+
+    $sqlQuery = "SELECT * FROM products";
+    $result = mysql_query ( $sqlQuery );
+
+    return mysql_fetch_assoc($result);
 
 }
 
@@ -60,7 +75,7 @@ function updateProduct($product) {
     }
 }
 
-// Delte product option. Return true if success, false when not.
+// Delete product option. Return true if success, false when not.
 function deleteProduct($id) {
 
     $productID = (int) $id;
@@ -97,40 +112,29 @@ function showProduct($id) {
     }
 }
 
+/*
+ *
+ * MANUFACTURER CRUD interface
+ *
+ * create/update/show/delete/validate/all
+ *
+ * */
 
-function productAll() {
-	
-	$sqlQuery = "SELECT * FROM products";
-	$result = mysql_query ( $sqlQuery );
+function mfValidate($mf) {}
+function mfCreate($mf) {}
+function mfUpdate($mf_id) {}
+function mfShow($mf_id) {}
+function mfAll()
+{
+    $sql = "SELECT * FROM `mfs` WHERE 1\n"
+        . "ORDER BY `mfs`.`id` ASC";
+    $result     = mysql_query ( $sql );
+    var_dump($result);
+    $records    = array ();
 
-    return mysql_fetch_assoc($result);
-
-}
-
-function productAllbyId($product_id) {
-	
-	$product_id = ( int ) $product_id;
-	$query = "SELECT * FROM products where 'movie_id' = '$product_id'";
-	$result = mysql_query ( $sqlQuery );
-
-	return mysql_fetch_assoc ( $result );
-
-}
-
-function mf_get_all() {
-	
-	$sqlQuery = "SELECT * FROM mfs where 1 order by mf_id asc";
-	$result = mysql_query ( $sqlQuery );
-	$records = array ();
-	
-	if ($result) {
-		while ( $records [] = mysql_fetch_assoc ( $result ) );
-		
-		
-		
-		array_pop ( $records ); // pop the null record which was pushed on as last
-		                     // item
-	}
-	return $records;
-
+    if ($result) {
+        while ( $records [] = mysql_fetch_assoc ( $result ) );
+        array_pop ( $records );
+    }
+    return $records;
 }

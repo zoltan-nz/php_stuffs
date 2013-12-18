@@ -3,25 +3,79 @@
 session_start();
 
 define ("MY_APP", 1);
-define ("APPLICATION_PATH", $_SERVER['DOCUMENT_ROOT']. "/application");
+define ("APPLICATION_PATH", $_SERVER['DOCUMENT_ROOT'] . "/application");
 define ("TEMPLATE_PATH", APPLICATION_PATH . "/view");
-
-include(TEMPLATE_PATH . "/layout/header.php");
 
 $activeHome = 'active';
 
+include(TEMPLATE_PATH . "/layout/header.php");
+
+
+
 ?>
 
+    <div class="row">
+        <div class="col-md-6">
 
-    <div class="container">
-        <div class="row">
-            <div class="span12">
+            <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1) { ?>
+                <h1>You are logged in</h1>
 
-                <h1>Project Notes</h1>
+                <a href="logout.php" class="btn btn-info">Log out</a></li>
+            <?php } else { ?>
+                <h1>First, please login</h1>
+                <form class="form-horizontal" action="login.php" method="POST">
 
-                <p>This project creates a list of confectionary products
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="username">Username:</label>
 
-                <p>Fix the errors, configure and rebuild this project so that it allows you to:
+                        <div class="col-md-4">
+                            <input type="text" id="username" name="username" class="form-control"
+                                   placeholder="Try with 'admin'"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="password">Password:</label>
+
+                        <div class="col-md-4">
+                            <input type="password" id="password" name="password" class="form-control"
+                                   placeholder="Try with 'letmein'"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-4">
+                            <button type="submit" value="Login" class="btn btn-default"/>
+                            Log in</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            <?php } ?>
+
+            <h1>Second, you can manage</h1>
+
+            <p>...products</p>
+
+            <p>...manufacturers</p>
+
+            <p>...images</p>
+
+            <p>...countries</p>
+
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="well">
+
+                <h2>Original Project Notes</h2>
+
+                <p>This project creates a list of confectionary products</p>
+
+                <p>Fix the errors, configure and rebuild this project so that it allows you to: </p>
                 <ol>
                     <li>List all products in the database
                     <li>Add products to the database
@@ -33,9 +87,8 @@ $activeHome = 'active';
                         If using a select list, no more than 6 countries are required. Ensure updates handle the new
                         country field.
                 </ol>
+
                 The sql setup is contained in the sqlsetup folder.
-
-
             </div>
 
 
@@ -43,6 +96,9 @@ $activeHome = 'active';
 
 
     </div>
+
+
+
 
 
 

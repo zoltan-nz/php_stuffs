@@ -35,7 +35,7 @@ if (!empty($_POST)) {
         header("Location: admin.php");
     }
     else {
-        $_SESSION['error'] = 'Login or password is not correct. Try "admin" and "letmein".';
+        $_SESSION['error'] = 'Login or password was incorrect. Try "admin" and "letmein".';
     }
 
 
@@ -48,31 +48,32 @@ include(TEMPLATE_PATH . "/layout/header.php");
     <h1>Please login</h1>
     <form class="form-horizontal" action="login.php" method="POST">
 
-        <div class="control-group">
-            <label class="control-label" for="username">Username:</label>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="username">Username:</label>
 
-            <div class="controls">
-                <input type="text" id="username" name="username"/>
+            <div class="col-md-4">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Try with 'admin'"/>
             </div>
         </div>
 
-        <div class="control-group">
-            <label class="control-label" for="password">Password</label>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="password">Password:</label>
 
-            <div class="controls">
-                <input type="password" id="password" name="password"/>
+            <div class="col-md-4">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Try with 'letmein'"/>
             </div>
         </div>
 
 
-        <div class="control-group">
-            <div class="controls">
-                <input type="submit" value="Login" class="btn btn-primary"/>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-4">
+                <button type="submit" value="Login" class="btn btn-default"/>Log in</button>
             </div>
         </div>
 
 
     </form>
+
 
 
 </div>

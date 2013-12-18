@@ -1,5 +1,6 @@
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="library/bootstrap/js/bootstrap.min.js"></script>
-<script src="js/app.js"></script>
+<script src="/library/js/jquery.min.js"></script>
+<script src="/library/js/bootstrap.min.js"></script>
+<script src="/js/app.js"></script>
+</div>
 </body>
 </html>
