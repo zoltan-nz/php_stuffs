@@ -11,7 +11,7 @@ include(APPLICATION_PATH . "/inc/config.inc.php");
 include(APPLICATION_PATH . "/inc/db.inc.php");
 include(APPLICATION_PATH . "/inc/functions.inc.php");
 
-$activeProductIndex = "active";
+$productIndex = "active";
 
 include(TEMPLATE_PATH . "/layout/header.php");
 ?>

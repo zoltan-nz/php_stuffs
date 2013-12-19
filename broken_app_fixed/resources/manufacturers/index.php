@@ -25,7 +25,7 @@ include(TEMPLATE_PATH . "/layout/header.php");
     </div>
 
     <div class="col-md-6">
-        <a href="">Add new Manufacturer</a>
+        <?php mf_link_to_create(); ?>
     </div>
 </div>
 
@@ -66,3 +66,7 @@ include(TEMPLATE_PATH . "/layout/header.php");
 </div>
 
 
+
+<?php
+include(TEMPLATE_PATH . "/layout/footer.php");
+?>

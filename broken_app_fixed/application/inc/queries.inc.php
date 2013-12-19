@@ -129,7 +129,7 @@ function mfAll()
     $sql = "SELECT * FROM `mfs` WHERE 1\n"
         . "ORDER BY `mfs`.`id` ASC";
     $result     = mysql_query ( $sql );
-    var_dump($result);
+
     $records    = array ();
 
     if ($result) {

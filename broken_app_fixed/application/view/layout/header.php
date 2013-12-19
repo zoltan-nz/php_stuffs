@@ -26,7 +26,12 @@
         </ul>
         <ul class="nav navbar-nav navbar-left">
             <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1) { ?>
-                <li class="<?php echo $activeAdminHome ?>"><a href="admin.php">Admin Home</a></li>
+                <li class="<?php echo $activeAdminHome ?>"><a href="/admin.php">Admin Home</a></li>
+                <li class="<?php echo $productIndex ?>"><a href="/resources/products/index.php">Products</a></li>
+                <li class="<?php echo $mfIndex ?>"><a href="/resources/manufacturers/index.php">Manufacturers</a></li>
+                <li class="<?php echo $countryIndex ?>"><a href="/resources/countries/index.php">Countries</a></li>
+                <li class="<?php echo $imageIndex ?>"><a href="/resources/images/index.php">Images</a></li>
+
             <?php } ?>
 
 
@@ -35,7 +40,7 @@
         <ul class="nav navbar-nav navbar-right">
 
             <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1) { ?>
-                <li class=""><a href="logout.php">Logout</a></li>
+                <li class=""><a href="/logout.php">Logout</a></li>
             <?php } else { ?>
                 <li class="<?php echo $activeLogin ?>"><a href="login.php">Login</a></li>
             <?php } ?>
