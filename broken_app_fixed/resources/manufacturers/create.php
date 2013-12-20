@@ -17,6 +17,31 @@ $mfIndex = "active";
 
 include(TEMPLATE_PATH . "/layout/header.php");
 
+var_dump($_POST);
+var_dump($_SESSION);
+
+if (!empty($_POST))
+{
+    $name = htmlspecialchars($_POST['name']);
+
+    if ($name == '') {
+       $_SESSION['error'] = 'Name cannot be blank.';
+    }
+    else
+    {
+       $mf = ['name' => $name];
+       if (mfSave($mf))
+       {
+           $_SESSION['success'] = 'A new manufacturer successfully added.';
+           header("Location: /resources/manufacturers/index.php");
+       }
+        else
+        {
+            $_SESSION['error'] = 'There was a problem with saving data in database.';
+        }
+    }
+}
+
 ?>
 
 <h1>Add a new Manufacturer</h1>
@@ -25,7 +50,7 @@ include(TEMPLATE_PATH . "/layout/header.php");
     <div class="form-group">
         <label class="col-sm-2 control-label" for="name">Name: </label>
         <div class="col-sm-10">
-            <input class="form-control" type="text" placeholder="ex. Nice Cake Ltd."/>
+            <input name='name' class="form-control" type="text" placeholder="ex. Nice Cake Ltd." required="true"/>
         </div>
     </div>
     <div class="form-group">

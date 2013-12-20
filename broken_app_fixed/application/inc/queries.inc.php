@@ -138,3 +138,15 @@ function mfAll()
     }
     return $records;
 }
+function mfSave($mf) {
+
+    $sql = "INSERT INTO `mfs`";
+    $sql .= " (`".implode("`, `", array_keys($mf))."`)";
+    $sql .= " VALUES (`".implode("`, `", $mf)."`); ";
+
+    var_dump($sql);
+    $result = mysql_query($sql);
+    var_dump(mysql_error());
+    return $result;
+
+}
