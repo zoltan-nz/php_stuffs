@@ -19,6 +19,18 @@ include(TEMPLATE_PATH . "/layout/header.php");
 
 ?>
 
-<form action="">
+<h1>Add a new Manufacturer</h1>
 
+<form class='form-horizontal' action="/resources/manufacturers/create.php" method="post">
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="name">Name: </label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" placeholder="ex. Nice Cake Ltd."/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+            <button type="submit" class="btn btn-primary">Add Manufacturer</button>
+        </div>
+    </div>
 </form>
