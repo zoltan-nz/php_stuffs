@@ -1,107 +1,87 @@
-CREATE DATABASE  IF NOT EXISTS `confectionary`; /*!40100 DEFAULT CHARACTER SET latin1 */;
+-- phpMyAdmin SQL Dump
+-- version 4.0.6deb1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Dec 20, 2013 at 10:32 PM
+-- Server version: 5.5.34-0ubuntu0.13.10.1
+-- PHP Version: 5.5.3-1ubuntu2.1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `confectionary`
+--
+CREATE DATABASE IF NOT EXISTS `confectionary` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `confectionary`;
--- MySQL dump 10.13  Distrib 5.5.16, for osx10.5 (i386)
---
--- Host: localhost    Database: confectionary
--- ------------------------------------------------------
--- Server version	5.5.9
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `mfs`
---
-
-DROP TABLE IF EXISTS `mfs`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `mfs` (
-  `mf_id` int(11) NOT NULL AUTO_INCREMENT,
-  `mf_title` varchar(50) NOT NULL,
-  PRIMARY KEY (`mf_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `mfs`
---
-
-LOCK TABLES `mfs` WRITE;
-/*!40000 ALTER TABLE `mfs` DISABLE KEYS */;
-INSERT INTO `mfs` VALUES (1,'MF 1'),(2,'MF 2'),(3,'MF 3'),(4,'MF 4');
-/*!40000 ALTER TABLE `mfs` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `products`
---
-
-DROP TABLE IF EXISTS `products`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `products` (
-  `product_id` int(11) NOT NULL AUTO_INCREMENT,
-  `mf_id` int(11) NOT NULL,
-  `title` varchar(150) NOT NULL,
-  `price` int(11) NOT NULL,
-  `taste` enum('Sweet','Sour','Savoury') NOT NULL,
-  `description` varchar(50) NOT NULL,
-  `imagefile` varchar(150) NOT NULL,
-  PRIMARY KEY (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `products`
---
-
-LOCK TABLES `products` WRITE;
-/*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,3,'First',124,'Sweet','',''),(2,2,'Second',45,'Sour','','');
-/*!40000 ALTER TABLE `products` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `adminusers`
 --
 
 DROP TABLE IF EXISTS `adminusers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `adminusers` (
+CREATE TABLE IF NOT EXISTS `adminusers` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `adminusers`
 --
 
-LOCK TABLES `adminusers` WRITE;
-/*!40000 ALTER TABLE `adminusers` DISABLE KEYS */;
-INSERT INTO `adminusers` VALUES (1,'admin','letmein');
-/*!40000 ALTER TABLE `adminusers` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `adminusers` (`user_id`, `username`, `password`) VALUES
+  (1, 'admin', 'letmein');
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+-- --------------------------------------------------------
 
--- Dump completed on 2013-05-07 20:06:59
+--
+-- Table structure for table `mfs`
+--
+
+DROP TABLE IF EXISTS `mfs`;
+CREATE TABLE IF NOT EXISTS `mfs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `mf_id` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `mfs`
+--
+
+INSERT INTO `mfs` (`id`, `name`, `updated_at`) VALUES
+  (1, 'Sweet Cake Factory', '2013-12-20 22:26:27'),
+  (2, 'Cheese Cake Factory', '2013-12-20 22:26:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mfs_id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `price` int(11) NOT NULL,
+  `taste` enum('Sweet','Sour','Savoury') NOT NULL,
+  `description` varchar(300) NOT NULL,
+  `imagefile_url` varchar(300) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `mfs_id`, `name`, `price`, `taste`, `description`, `imagefile_url`) VALUES
+  (1, 1, 'Carrot Cake', 3, 'Sweet', 'Carrot cake is a cake which contains carrots mixed into the batter. The carrot softens in the cooking process, and the cake usually has a soft, dense texture.', ''),
+  (2, 2, 'Cheese Cake', 45, 'Sweet', 'Cheesecake is a sweet dish consisting of two or more layers. The main, or thickest layer, consists of a mixture of soft, fresh cheese, eggs, and sugar; the bottom layer is often a crust or base made from crushed cookies, graham crackers, pastry, or sponge cake. It may be baked or unbaked. ', '');
