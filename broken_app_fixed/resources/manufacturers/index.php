@@ -68,5 +68,6 @@ include(TEMPLATE_PATH . "/layout/header.php");
 
 
 <?php
+
 include(TEMPLATE_PATH . "/layout/footer.php");
 ?>

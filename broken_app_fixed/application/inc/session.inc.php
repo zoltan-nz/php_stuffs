@@ -2,6 +2,7 @@
 
 defined('MY_APP') or die('Restricted access');
 
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -9,8 +10,8 @@ defined('MY_APP') or die('Restricted access');
 
 if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != 1) {
 
-header("Location: index.php");
+    $_SESSION['error'] = "Restricted area, please login first.";
 
+    header("Location: /index.php");
+    exit;
 }
-
-?>

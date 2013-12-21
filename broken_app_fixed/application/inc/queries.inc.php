@@ -122,8 +122,23 @@ function showProduct($id) {
 
 function mfValidate($mf) {}
 function mfCreate($mf) {}
-function mfUpdate($mf_id) {}
-function mfShow($mf_id) {}
+function mfUpdate($mf) {
+    $query = sprintf("UPDATE `mfs` SET `name` = '%s' WHERE `mfs`.`id` = '%s'", mysql_real_escape_string($mf['name']), mysql_real_escape_string($mf['id']));
+    $result = mysql_query($query);
+    return $result;
+}
+
+function mfShow($mf_id) {
+    $sql = "SELECT * FROM `mfs` WHERE `mfs`.`id` = $mf_id";
+    $result = mysql_query($sql);
+    $record = array();
+
+    if ($result) {
+        $record =  mysql_fetch_assoc($result);
+    }
+    return $record;
+}
+
 function mfAll()
 {
     $sql = "SELECT * FROM `mfs` WHERE 1\n"
@@ -138,15 +153,21 @@ function mfAll()
     }
     return $records;
 }
+
 function mfSave($mf) {
 
     $sql = "INSERT INTO `mfs`";
-    $sql .= " (`".implode("`, `", array_keys($mf))."`)";
-    $sql .= " VALUES (`".implode("`, `", $mf)."`); ";
+    $sql .= " (`id`, `".implode("`, `", array_keys($mf))."`, `updated_at`)";
+    $sql .= " VALUES (NULL, '".implode("', '", $mf)."', CURRENT_TIMESTAMP); ";
 
-    var_dump($sql);
     $result = mysql_query($sql);
-    var_dump(mysql_error());
     return $result;
 
+}
+
+function mfDelete($mf_id)
+{
+    $sql = "DELETE FROM `mfs` WHERE `mfs`.`id` = $mf_id";
+    $result = mysql_query($sql);
+    return $result;
 }

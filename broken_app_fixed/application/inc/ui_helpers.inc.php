@@ -67,7 +67,7 @@ function mf_link_to_edit($id)
 
 function mf_link_to_delete($id)
 {
-    return "<a href='".MANUFACTURERS.'/delete.php'."?id=$id' class='btn btn-danger'>Delete</a>";
+    return "<a href='".MANUFACTURERS.'/delete.php'."?id=$id' class='btn btn-danger js-delete'>Delete</a>";
 }
 
 function country_link_to_index()

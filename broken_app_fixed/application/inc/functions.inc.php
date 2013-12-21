@@ -23,9 +23,9 @@ function saveImageRecord($product_id, $imageName) {
 function authenticate($username, $password) {
     
     $sqlQuery = "SELECT * from adminusers WHERE ";
-    $sqlQuery .= "username = '" . $username . "'";
+    $sqlQuery .= "username = '" . mysql_real_escape_string($username) . "'";
     $sqlQuery .= " AND ";
-    $sqlQuery .= "password = '" .$password . "'";
+    $sqlQuery .= "password = '" . mysql_real_escape_string($password) . "'";
     
     $result = mysql_query($sqlQuery);
 

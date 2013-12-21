@@ -17,12 +17,9 @@ $mfIndex = "active";
 
 include(TEMPLATE_PATH . "/layout/header.php");
 
-var_dump($_POST);
-var_dump($_SESSION);
-
 if (!empty($_POST))
 {
-    $name = htmlspecialchars($_POST['name']);
+    $name = mysql_real_escape_string($_POST['name']);
 
     if ($name == '') {
        $_SESSION['error'] = 'Name cannot be blank.';

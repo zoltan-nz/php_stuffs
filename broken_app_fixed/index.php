@@ -11,6 +11,12 @@ $activeHome = 'active';
 include(TEMPLATE_PATH . "/layout/header.php");
 
 
+include(APPLICATION_PATH . "/inc/config.inc.php");
+include(APPLICATION_PATH . "/inc/db.inc.php");
+include(APPLICATION_PATH . "/inc/functions.inc.php");
+include(APPLICATION_PATH . "/inc/queries.inc.php");
+include(APPLICATION_PATH . "/inc/ui_helpers.inc.php");
+
 
 ?>
 
