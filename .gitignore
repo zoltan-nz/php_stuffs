@@ -1,3 +1,5 @@
 .idea
 access.log
 error.log
+broken_app_fixed/uploads/*.jpg
+broken_app_fixed/uploads/*.png

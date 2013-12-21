@@ -30,7 +30,6 @@
                 <li class="<?php echo $productIndex ?>"><a href="/resources/products/index.php">Products</a></li>
                 <li class="<?php echo $mfIndex ?>"><a href="/resources/manufacturers/index.php">Manufacturers</a></li>
                 <li class="<?php echo $countryIndex ?>"><a href="/resources/countries/index.php">Countries</a></li>
-                <li class="<?php echo $imageIndex ?>"><a href="/resources/images/index.php">Images</a></li>
 
             <?php } ?>
 

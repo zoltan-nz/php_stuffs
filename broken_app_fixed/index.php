@@ -28,7 +28,7 @@ include(APPLICATION_PATH . "/inc/ui_helpers.inc.php");
 
                 <a href="logout.php" class="btn btn-info">Log out</a></li>
             <?php } else { ?>
-                <h1>First, please login</h1>
+                <h1>Firstly, please login</h1>
                 <form class="form-horizontal" action="login.php" method="POST">
 
                     <div class="form-group">
@@ -52,7 +52,7 @@ include(APPLICATION_PATH . "/inc/ui_helpers.inc.php");
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-4">
-                            <button type="submit" value="Login" class="btn btn-default"/>
+                            <button type="submit" value="Login" class="btn btn-success"/>
                             Log in</button>
                         </div>
                     </div>
@@ -61,16 +61,16 @@ include(APPLICATION_PATH . "/inc/ui_helpers.inc.php");
                 </form>
             <?php } ?>
 
-            <h1>Second, you can manage</h1>
+            <h1>Secondly, you can manage</h1>
+<ul>
+            <li>...products</li>
 
-            <p>...products</p>
+            <li>...manufacturers,</li>
 
-            <p>...manufacturers</p>
+            <li>you can upload images</li>
 
-            <p>...images</p>
-
-            <p>...countries</p>
-
+            <li>...listing countries.</li>
+</ul>
 
         </div>
 

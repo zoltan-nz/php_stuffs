@@ -46,19 +46,21 @@ if (!empty($_POST))
 
 ?>
 
+<?php echo mf_link_to_index() ?>
+
 <h1>Edit Manufacturer</h1>
 
 <form class='form-horizontal' action="/resources/manufacturers/edit.php" method="post">
     <div class="form-group">
         <label class="col-sm-2 control-label" for="name">Name: </label>
-        <div class="col-sm-10">
+        <div class="col-sm-4">
             <input name="id" type="hidden" value="<?php echo $mf['id'] ?>">
             <input name='name' class="form-control" type="text" placeholder="ex. Nice Cake Ltd." required="true" value="<?php echo $mf['name'] ?>"/>
         </div>
     </div>
     <div class="form-group">
-        <div class="col-sm-10 col-sm-offset-2">
-            <button type="submit" class="btn btn-primary">Edit Manufacturer</button>
+        <div class="col-sm-4 col-sm-offset-2">
+            <button type="submit" class="btn btn-primary">Save Manufacturer</button>
         </div>
     </div>
 </form>

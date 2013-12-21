@@ -21,7 +21,36 @@ include(TEMPLATE_PATH . "/layout/header.php");
 
     <h1>Country list</h1>
 
+    <div class="row">
+        <div class="col-md-12">
 
+
+            <table class="table table-bordered table-responsive">
+                <thead>
+                <th>ID</th>
+                <th>Name</th>
+                </thead>
+                <tbody>
+
+                <?php $countries = countryAll();
+
+                foreach ($countries as $country) {
+                    ?>
+                    <tr>
+                        <td><?php echo $country['id'] ?></td>
+                        <td><?php echo $country['name'] ?></td>
+                    </tr>
+
+                <?php
+                }
+                ?>
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
 
 <?php
 include(TEMPLATE_PATH . "/layout/footer.php");

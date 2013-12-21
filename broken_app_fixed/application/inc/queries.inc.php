@@ -8,79 +8,63 @@ defined('MY_APP') or die('Restricted access');
  *
  * */
 
-function validateProduct($product) {
-
-    return true;
-
-}
-
 function productAll() {
 
-    $sqlQuery = "SELECT * FROM products";
+    $sqlQuery = "SELECT * FROM products WHERE 1 ORDER BY id ASC";
     $result = mysql_query ( $sqlQuery );
 
-    return mysql_fetch_assoc($result);
+    $records    = array ();
+
+    if ($result) {
+        while ( $records [] = mysql_fetch_assoc ( $result ) );
+        array_pop ( $records );
+    }
+    return $records;
 
 }
 
 // Return with inserted id or false and error message in _session['error']
-function createProduct($product) {
+function productSave($product) {
 
-    $sqlQuery = "
-        INSERT INTO products
-        (title, mf_id,	price,	taste)
-      	values
-      	('{$product['title']}',
-      	 '{$product['mf_id']}',
-      	 '{$product['price']}',
-      	 '{$product['taste']}')";
+    $sql = "INSERT INTO `products` ";
+    $sql .= " (`id`, `".implode("`, `", array_keys($product))."`, `updated_at`)";
+    $sql .= " VALUES (NULL, '".implode("', '", $product)."', CURRENT_TIMESTAMP); ";
 
-    $result = mysql_query($sqlQuery);
+    var_dump($sql);
 
-    if (!$result) {
-        $_SESSION['error'] = $sqlQuery.("<br/>").mysql_error();
-        return false;
-    }
+    $result = mysql_query($sql);
+    return $result;
 
-    return mysql_insert_id();
 }
 
 
 
 // Update products. Return true if success and return false if error.
-function updateProduct($product) {
+function productUpdate($product) {
 
-    $productID = (int) $product['movie_id'];
+    $id=(int)$product['id'];
 
-    $sqlQuery = "UPDATE products SET ";
-    $sqlQuery .= " 'taste' = '"         . $product['taste'] . "',";
-    $sqlQuery .= " 'price' = '"         . $product['price'] . "',";
-    $sqlQuery .= " 'title' = '"         . $product['title'] . "',";
-    $sqlQuery .= " 'description' = '"   . $product['description'] . "', ";
-    $sqlQuery .= " 'mf_id' = '"         . $product['mf_id'] . "'";
-    $sqlQuery .= " WHERE 'product_id' = '". $productID . "'";
+    $sqlQuery = "UPDATE `products` SET ";
+    $sqlQuery .= " `taste` = '"         . mysql_real_escape_string($product['taste']) . "',";
+    $sqlQuery .= " `price` = '"         . mysql_real_escape_string($product['price']) . "',";
+    $sqlQuery .= " `name` = '"         . mysql_real_escape_string($product['name']) . "',";
+    $sqlQuery .= " `description` = '"   . mysql_real_escape_string($product['description']) . "', ";
+    $sqlQuery .= " `mf_id` = '"         . mysql_real_escape_string($product['mf_id']) . "', ";
+    $sqlQuery .= " `country_id` = '"         . mysql_real_escape_string($product['country_id']) . "', ";
+    $sqlQuery .= " `imagefile_url` = '"         . mysql_real_escape_string($product['imagefile_url']) . "'";
+    $sqlQuery .= " WHERE `id` = $id ";
 
-    var_dumb($sqlQuery);
 
     $result = mysql_query($sqlQuery);
 
-    if ($result) {
+    return $result;
 
-        return true;
-
-    } else {
-
-        $_SESSION['error'] = mysql_error();
-        return false;
-    }
 }
 
 // Delete product option. Return true if success, false when not.
-function deleteProduct($id) {
+function productDelete($product_id) {
 
-    $productID = (int) $id;
-
-    $sqlQuery = "DELETE FROM products where 'product_id' = '$productID'";
+    $sqlQuery = "DELETE FROM `products` WHERE `products`.`id` = $product_id";
 
     $result = mysql_query($sqlQuery);
     if ($result) {
@@ -96,22 +80,17 @@ function deleteProduct($id) {
 }
 
 // Return with results in array or with false.
-function showProduct($id) {
+function productShow($product_id) {
 
-    $productID = (int) $id;
-
-    $sqlQuery = "SELECT * from products WHERE 'product_id' = '$productID'";
-
+    $sqlQuery = "SELECT * from `products` WHERE `products`.`id` = $product_id";
     $result = mysql_query($sqlQuery);
+    $record = array();
 
     if ($result) {
-        return mysql_fetch_assoc($result);
-    } else {
-        $_SESSION['error'] = mysql_error();
-        return false;
+        $record =  mysql_fetch_assoc($result);
     }
+    return $record;
 }
-
 /*
  *
  * MANUFACTURER CRUD interface
@@ -120,8 +99,6 @@ function showProduct($id) {
  *
  * */
 
-function mfValidate($mf) {}
-function mfCreate($mf) {}
 function mfUpdate($mf) {
     $query = sprintf("UPDATE `mfs` SET `name` = '%s' WHERE `mfs`.`id` = '%s'", mysql_real_escape_string($mf['name']), mysql_real_escape_string($mf['id']));
     $result = mysql_query($query);
@@ -158,7 +135,7 @@ function mfSave($mf) {
 
     $sql = "INSERT INTO `mfs`";
     $sql .= " (`id`, `".implode("`, `", array_keys($mf))."`, `updated_at`)";
-    $sql .= " VALUES (NULL, '".implode("', '", $mf)."', CURRENT_TIMESTAMP); ";
+    $sql .= " VALUES (NULL, '".mysql_real_escape_string(implode("', '", $mf))."', CURRENT_TIMESTAMP); ";
 
     $result = mysql_query($sql);
     return $result;
@@ -170,4 +147,37 @@ function mfDelete($mf_id)
     $sql = "DELETE FROM `mfs` WHERE `mfs`.`id` = $mf_id";
     $result = mysql_query($sql);
     return $result;
+}
+
+/*
+ *
+ * COUNTRY
+ *
+ * all
+ *
+ * */
+
+function countryAll()
+{
+    $sql = "SELECT * FROM `countries` WHERE 1 ORDER BY `countries`.`name` ASC;";
+    $result = mysql_query($sql);
+
+    $records    = array ();
+
+    if ($result) {
+        while ( $records [] = mysql_fetch_assoc ( $result ) );
+        array_pop ( $records );
+    }
+    return $records;
+}
+
+function countryShow($country_id) {
+    $sql = "SELECT * FROM countries WHERE id = $country_id";
+    $result = mysql_query($sql);
+    $record = array();
+
+    if ($result) {
+        $record =  mysql_fetch_assoc($result);
+    }
+    return $record;
 }

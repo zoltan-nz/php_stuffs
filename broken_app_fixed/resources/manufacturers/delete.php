@@ -15,7 +15,7 @@ include(APPLICATION_PATH . "/inc/ui_helpers.inc.php");
 
 if (!empty($_GET))
 {
-    $id = htmlspecialchars($_GET['id']);
+    $id = (int) ($_GET['id']);
     $ids = array_column(mfAll(), 'id');
 
     if ($id == '' or !in_array($id, $ids)) {
@@ -30,7 +30,7 @@ if (!empty($_GET))
         }
         else
         {
-            $_SESSION['error'] = 'There was a problem with deleting from database.';
+            $_SESSION['error'] = 'There was a problem with deleting in database.';
         }
     }
 }

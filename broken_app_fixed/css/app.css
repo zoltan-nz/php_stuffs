@@ -16,3 +16,8 @@ body {
     background-image: none;
     background-color: #DCCEB0!important;
 }
+
+#products-list tr :nth-child(9) {
+    min-width: 150px;
+    max-width: 150px;
+}

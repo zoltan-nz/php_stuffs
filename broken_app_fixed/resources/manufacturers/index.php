@@ -33,7 +33,7 @@ include(TEMPLATE_PATH . "/layout/header.php");
     <div class="col-md-12">
 
 
-        <table class="table table-bordered table-responsive">
+        <table class="table table-bordered table-responsive" id="manufacturers-list">
             <thead>
             <th>ID</th>
             <th>Name</th>

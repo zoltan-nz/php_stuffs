@@ -19,7 +19,7 @@ include(TEMPLATE_PATH . "/layout/header.php");
 <div class="container">
     <div class="row">
         <div class="span12">
-            <h1>Manage your products</h1>
+            <h1>Admin Home</h1>
 
             <p>Choose your activity</p>
         </div>
