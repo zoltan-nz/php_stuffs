@@ -80,18 +80,3 @@ function mf_link_to_delete($id)
 {
     return "<a href='".MANUFACTURERS.'/delete.php'."?id=$id' class='btn btn-danger js-delete'>Delete</a>";
 }
-
-/*
- *
- *
- * */
-
-function output_selected($currentValue, $valueToMatch) {
-
-    if ($currentValue == $valueToMatch) {
-
-        return "selected ='selected'";
-
-    }
-
-}

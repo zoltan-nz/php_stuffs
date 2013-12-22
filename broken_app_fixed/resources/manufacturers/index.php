@@ -19,51 +19,53 @@ include(TEMPLATE_PATH . "/layout/header.php");
 
 ?>
 
-<div class="row">
-    <div class="col-md-6">
-        <h1>List of Manufacturers</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>List of Manufacturers</h1>
+        </div>
+
+        <div class="col-md-6">
+            <?php mf_link_to_create(); ?>
+        </div>
     </div>
 
-    <div class="col-md-6">
-        <?php mf_link_to_create(); ?>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
 
 
-        <table class="table table-bordered table-responsive" id="manufacturers-list">
-            <thead>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Actions</th>
-            </thead>
-            <tbody>
-
-            <?php $manufacturers = mfAll();
-
-            foreach ($manufacturers as $mf) {
-                ?>
+            <table class="table table-bordered table-responsive" id="manufacturers-list">
+                <thead>
                 <tr>
-                    <td><?php echo $mf['id'] ?></td>
-                    <td><?php echo $mf['name'] ?></td>
-                    <td><?php echo mf_link_to_edit($mf['id']) ?>
-                        <?php echo mf_link_to_delete($mf['id']) ?>
-                    </td>
-
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
                 </tr>
+                </thead>
+                <tbody>
 
-            <?php
-            }
-            ?>
+                <?php $manufacturers = mfAll();
 
-            </tbody>
-        </table>
+                foreach ($manufacturers as $mf) {
+                    ?>
+                    <tr>
+                        <td><?php echo $mf['id'] ?></td>
+                        <td><?php echo $mf['name'] ?></td>
+                        <td><?php echo mf_link_to_edit($mf['id']) ?>
+                            <?php echo mf_link_to_delete($mf['id']) ?>
+                        </td>
+
+                    </tr>
+
+                <?php
+                }
+                ?>
+
+                </tbody>
+            </table>
 
 
+        </div>
     </div>
-</div>
 
 
 

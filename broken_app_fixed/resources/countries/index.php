@@ -27,8 +27,10 @@ include(TEMPLATE_PATH . "/layout/header.php");
 
             <table class="table table-bordered table-responsive">
                 <thead>
-                <th>ID</th>
-                <th>Name</th>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
                 </thead>
                 <tbody>
 

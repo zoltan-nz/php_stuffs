@@ -98,18 +98,18 @@ if (!empty($_POST))
     <div class="form-group">
         <label class="col-sm-2 control-label" for="name">Name*: </label>
         <div class="col-sm-4">
-            <input name="id" type="hidden" value="<?php echo $product['id'] ?>">
-            <input name='name' class="form-control" type="text" placeholder="ex. Carrot Cake" required="true" value="<?php echo $product['name'] ?>"/>
+            <input id='id' name="id" type="hidden" value="<?php echo $product['id'] ?>">
+            <input id='name' name='name' class="form-control" type="text" placeholder="ex. Carrot Cake" required="true" value="<?php echo $product['name'] ?>"/>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="name">Price: </label>
+        <label class="col-sm-2 control-label" for="price">Price: </label>
         <div class="col-sm-4">
-            <input name='price' class="form-control" type="number" placeholder="ex. 3.75" value="<?php echo $product['price'] ?>" pattern="[0-9]+([\.|,][0-9]+)?" step="0.01" title="This should be a number with up to 2 decimal places."/>
+            <input id='price' name='price' class="form-control" type="number" placeholder="ex. 3.75" value="<?php echo $product['price'] ?>" pattern="[0-9]+([\.|,][0-9]+)?" step="0.01" title="This should be a number with up to 2 decimal places."/>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="name">Taste: </label>
+        <label class="col-sm-2 control-label" for="taste">Taste: </label>
         <div class="col-sm-4">
 
             <?php echo form_select('taste', $tastes, $product['taste']) ?>
@@ -117,31 +117,31 @@ if (!empty($_POST))
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="name">Description: </label>
+        <label class="col-sm-2 control-label" for="description">Description: </label>
         <div class="col-sm-4">
-            <input name='description' class="form-control" type="text" value="<?php echo $product['description'] ?>"/>
+            <input id='description' description' class="form-control" type="text" value="<?php echo $product['description'] ?>"/>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="name">Manufacturer: </label>
+        <label class="col-sm-2 control-label" for="mf_id">Manufacturer: </label>
         <div class="col-sm-4">
             <?php echo form_select('mf_id', mfAll(), $product['mf_id']); ?>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="name">Country: </label>
+        <label class="col-sm-2 control-label" for="country_id">Country: </label>
         <div class="col-sm-4">
             <?php echo form_select('country_id', countryAll(), $product['country_id']) ?>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="name">Image: </label>
+        <label class="col-sm-2 control-label" for="image">Image: </label>
         <div class="col-sm-4">
-            <input name='image' class="form-control" type="file"/>
+            <input id="image" name='image' class="form-control" type="file"/>
             <?php if (!$product['imagefile_url'] == '') { ?>
                 <img src="<?php echo $product['imagefile_url'] ?>" width="200" alt="Image"/>
                 <input type="hidden" name="imagefile_url" value="<?php echo $product['imagefile_url'] ?>" />
-                <input name="delete_image"  type="checkbox" value="1"/>
+                <input id="delete_image" name="delete_image"  type="checkbox" value="1"/>
                 Delete Image
             <?php } ?>
         </div>

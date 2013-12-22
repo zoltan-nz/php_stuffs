@@ -2,5 +2,5 @@
 session_start();
 session_destroy();
 session_start();
-$_session['success'] = 'Successfully loged out.';
+$_session['success'] = 'Successfully logged out.';
 header("Location: index.php");

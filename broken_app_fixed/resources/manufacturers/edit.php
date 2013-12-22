@@ -55,7 +55,7 @@ if (!empty($_POST))
         <label class="col-sm-2 control-label" for="name">Name: </label>
         <div class="col-sm-4">
             <input name="id" type="hidden" value="<?php echo $mf['id'] ?>">
-            <input name='name' class="form-control" type="text" placeholder="ex. Nice Cake Ltd." required="true" value="<?php echo $mf['name'] ?>"/>
+            <input id='name' name='name' class="form-control" type="text" placeholder="ex. Nice Cake Ltd." required="true" value="<?php echo $mf['name'] ?>"/>
         </div>
     </div>
     <div class="form-group">

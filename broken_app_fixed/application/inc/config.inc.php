@@ -1,5 +1,7 @@
 <?php
 
+// Please setup database access here.
+
 defined('MY_APP') or die('Restricted access');
 
 define("DB_HOST",       "localhost");

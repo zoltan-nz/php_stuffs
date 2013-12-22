@@ -35,6 +35,7 @@ include(TEMPLATE_PATH . "/layout/header.php");
 
             <table class="table table-bordered table-responsive" id="products-list">
                 <thead>
+                <tr>
                     <th>ID</th>
                     <th>Image</th>
                     <th>Name</th>
@@ -44,6 +45,7 @@ include(TEMPLATE_PATH . "/layout/header.php");
                     <th>Manufacturer</th>
                     <th>Country</th>
                     <th>Actions</th>
+                </tr>
                 </thead>
                 <tbody>
 

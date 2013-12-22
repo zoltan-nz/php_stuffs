@@ -52,8 +52,9 @@ include(APPLICATION_PATH . "/inc/ui_helpers.inc.php");
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-4">
-                            <button type="submit" value="Login" class="btn btn-success"/>
-                            Log in</button>
+                            <button type="submit" value="Login" class="btn btn-success">
+                                Log in
+                            </button>
                         </div>
                     </div>
 
@@ -62,15 +63,15 @@ include(APPLICATION_PATH . "/inc/ui_helpers.inc.php");
             <?php } ?>
 
             <h1>Secondly, you can manage</h1>
-<ul>
-            <li>...products</li>
+            <ul>
+                <li>...products</li>
 
-            <li>...manufacturers,</li>
+                <li>...manufacturers,</li>
 
-            <li>you can upload images</li>
+                <li>you can upload images</li>
 
-            <li>...listing countries.</li>
-</ul>
+                <li>...listing countries.</li>
+            </ul>
 
         </div>
 
@@ -102,11 +103,6 @@ include(APPLICATION_PATH . "/inc/ui_helpers.inc.php");
 
 
     </div>
-
-
-
-
-
 
 <?php
 include(TEMPLATE_PATH . "/layout/footer.php");

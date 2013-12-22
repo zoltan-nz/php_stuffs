@@ -49,7 +49,7 @@ if (!empty($_POST))
     <div class="form-group">
         <label class="col-sm-2 control-label" for="name">Name: </label>
         <div class="col-sm-4">
-            <input name='name' class="form-control" type="text" placeholder="ex. Nice Cake Ltd." required="true"/>
+            <input id="name" name='name' class="form-control" type="text" placeholder="ex. Nice Cake Ltd." required="true"/>
         </div>
     </div>
     <div class="form-group">

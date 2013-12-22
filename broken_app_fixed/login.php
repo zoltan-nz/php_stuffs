@@ -9,7 +9,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1) {
 }
 
 define ("MY_APP", 1);
-define ("APPLICATION_PATH", $_SERVER['DOCUMENT_ROOT']. "/application");
+define ("APPLICATION_PATH", $_SERVER['DOCUMENT_ROOT'] . "/application");
 define ("TEMPLATE_PATH", APPLICATION_PATH . "/view");
 
 include(APPLICATION_PATH . "/inc/config.inc.php");
@@ -33,8 +33,7 @@ if (!empty($_POST)) {
         $_SESSION["loggedIn"] = 1;
         $_SESSION['success'] = 'You are successfully logged in.';
         header("Location: admin.php");
-    }
-    else {
+    } else {
         $_SESSION['error'] = 'Login or password was incorrect. Try "admin" and "letmein".';
     }
 
@@ -43,40 +42,43 @@ if (!empty($_POST)) {
 
 include(TEMPLATE_PATH . "/layout/header.php");
 ?>
-<div class="container">
+    <div class="container">
 
-    <h1>Please login</h1>
-    <form class="form-horizontal" action="login.php" method="POST">
+        <h1>Please login</h1>
 
-        <div class="form-group">
-            <label class="col-md-2 control-label" for="username">Username:</label>
+        <form class="form-horizontal" action="login.php" method="POST">
 
-            <div class="col-md-4">
-                <input type="text" id="username" name="username" class="form-control" placeholder="Try with 'admin'"/>
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="username">Username:</label>
+
+                <div class="col-md-4">
+                    <input type="text" id="username" name="username" class="form-control"
+                           placeholder="Try with 'admin'"/>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="col-md-2 control-label" for="password">Password:</label>
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="password">Password:</label>
 
-            <div class="col-md-4">
-                <input type="password" id="password" name="password" class="form-control" placeholder="Try with 'letmein'"/>
+                <div class="col-md-4">
+                    <input type="password" id="password" name="password" class="form-control"
+                           placeholder="Try with 'letmein'"/>
+                </div>
             </div>
-        </div>
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-4">
-                <button type="submit" value="Login" class="btn btn-default"/>Log in</button>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-4">
+                    <button type="submit" value="Login" class="btn btn-default"/>
+                    Log in</button>
+                </div>
             </div>
-        </div>
 
 
-    </form>
+        </form>
 
 
-
-</div>
+    </div>
 
 <?php
 include(TEMPLATE_PATH . "/layout/footer.php");

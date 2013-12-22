@@ -104,27 +104,27 @@ if (!empty($_POST))
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="name">Description: </label>
+        <label class="col-sm-2 control-label" for="description">Description: </label>
         <div class="col-sm-4">
-            <input name='description' class="form-control" type="text" value="<?php echo $product['description'] ?>"/>
+            <input id='description' name='description' class="form-control" type="text" value="<?php echo $product['description'] ?>"/>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="name">Manufacturer: </label>
+        <label class="col-sm-2 control-label" for="mf_id">Manufacturer: </label>
         <div class="col-sm-4">
             <?php echo form_select('mf_id', mfAll(), $product['mf_id']); ?>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="name">Country: </label>
+        <label class="col-sm-2 control-label" for="country_id">Country: </label>
         <div class="col-sm-4">
             <?php echo form_select('country_id', countryAll(), $product['country_id']) ?>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="name">Image: </label>
+        <label class="col-sm-2 control-label" for="image">Image: </label>
         <div class="col-sm-4">
-            <input name='image' class="form-control" type="file"/>
+            <input id='image' name='image' class="form-control" type="file"/>
         </div>
     </div>
     <div class="form-group">
